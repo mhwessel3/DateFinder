@@ -14,14 +14,9 @@ int main(int argc, char** argv) {
 
 //regex defines:
 	regex year_regex("[0-9][0-9][0-9][0-9]?");
- /*	regex month_regex("^[jJ]anuary | [jJ]an | 
-					   [fF]ebruary | [fF]eb | 
-					   [mM]arch | [mM]ar | 
-					   [aA]pril | [aA]pr | 
-					   [mM]ay | 
-					   [jJ]une | [jJ]un |
-					   [jJ]uly | [jJ]ul |
-					   []"); */
+	regex month_regex("/[jJ]an|[jJ]an|[fF]ebruary|[fF]eb|[mM]arch|[mM]ar|[aA]pril|[aA]pr|[mM]ay|[jJ]une|[jJ]un|[jJ]uly|[jJ]ul/g");
+					//	[aA]ugust|[aA]ug|[sS]eptember|[sS]ept/");
+					//	[oO]ctober|[oO]ct|[nN]ovember|[nN]ov|[dD]ecember|[dD]ec/");
 	regex day_regex(".[0-9][0-9]?");
 //	regex holiday_regex();
 	regex e("/[mM]organ/");
@@ -39,14 +34,19 @@ int main(int argc, char** argv) {
 		return -1;
 	}
 
-	smatch m;
+	smatch month_match;
 	string STRING;
     while(!inFile.eof()) {
 		getline(inFile, STRING); 
-	    if (regex_search(STRING, m, day_regex)) {
-            cout << m[0] << endl;
-        }
+        //at least one match
+		while (regex_search(STRING, month_match, month_regex)) {
+			cout << month_match[0] << endl;
+            STRING = month_match.suffix();	
+		}
+		//cout << month_match[0] << endl;
+		//cout << month_match.suffix() << endl;
     }
+	
 	inFile.close();
 	cout << "" << endl;
 	return 0;
