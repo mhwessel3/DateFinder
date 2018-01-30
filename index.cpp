@@ -9,14 +9,13 @@ using namespace std;
  * COURSE: LING406 
  * SOURCES: 
  * (1) http://www.cplusplus.com/forum/beginner/8388/
+ * Compile with: clang++ -std=c++11 -stdlib=libc++ -Wall -Wextra index.cpp -o exe
  */
 int main(int argc, char** argv) {
 
 //regex defines:
 	regex year_regex("[0-9][0-9][0-9][0-9]?");
-	regex month_regex("/[jJ]an|[jJ]an|[fF]ebruary|[fF]eb|[mM]arch|[mM]ar|[aA]pril|[aA]pr|[mM]ay|[jJ]une|[jJ]un|[jJ]uly|[jJ]ul/g");
-					//	[aA]ugust|[aA]ug|[sS]eptember|[sS]ept/");
-					//	[oO]ctober|[oO]ct|[nN]ovember|[nN]ov|[dD]ecember|[dD]ec/");
+	regex month_regex("[jJ]an(uary)?|[fF]eb(ruary)?|[mM]ar(ch)?|[aA]pr(il)?|[mM]ay|[jJ]un(e)?|[jJ]ul(y)?|[aA]ug(ust)?|[sS]ept(ember)?|[oO]ct(ober)?|[nN]ov(ember)?|[dD]ec(ember)?");
 	regex day_regex(".[0-9][0-9]?");
 //	regex holiday_regex();
 	regex e("/[mM]organ/");
