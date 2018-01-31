@@ -14,7 +14,7 @@ using namespace std;
 int main(int argc, char** argv) {
 
 	//REGEX DEFINES:
-	regex year_regex("[0-9][0-9][0-9][0-9]?");
+	regex year_regex("[0-9][0-9][0-9][0-9]");
 	//January or jan
 	regex month_regex("Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?");
 	//EX: 11/5/17
@@ -23,8 +23,10 @@ int main(int argc, char** argv) {
 	regex holiday_regex("Easter|[nN]ew [yY]ear'?s( [dD]ay)?|[cC]hristmas ([dD]ay)?|[hH]alloween|[mM]emorial [dD]ay|[lL]abor [dD]ay|[cC]olumbus [dD]ay|[vV]eterans [dD]ay|[tT]hanksgiving [dD]ay|[mM]artin [lL]uther [kK]ing,? (Jr. )?[dD]ay|George Washington’?s Birthday|[iI]ndependence [dD]ay");
 	//EX: January 8th, 2016
 	regex month_day_year_regex("(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)( [0-9]?[0-9](st|nd|rd|th)?,?( [0-9][0-9][0-9][0-9])?)?");
+	//EX: Monday, January 18th??
+	regex wkday_month_num_year("((Sun|Mon|Tues|Thurs|Fri|Wed(nes)?|Sat(urday)?)(day)?)(, )?((Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)( [0-9]?[0-9](st|nd|rd|th)?,?( [0-9][0-9][0-9][0-9])?)?)?");
 
-	regex whole_regex("[0-9][0-9][0-9][0-9]?|(([1][0-2])|([0]?[1-9]))[. /-][0-9][0-9]?[. /-][0-9][0-9]([0-9][0-9])?|Easter|[nN]ew [yY]ear'?s( [dD]ay)?|[cC]hristmas ([dD]ay)?|[hH]alloween|[mM]emorial [dD]ay|[lL]abor [dD]ay|[cC]olumbus [dD]ay|[vV]eterans [dD]ay|[tT]hanksgiving [dD]ay|[mM]artin [lL]uther [kK]ing,? (Jr. )?[dD]ay|George Washington’?s Birthday|[iI]ndependence [dD]ay|(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)( [0-9]?[0-9](st|nd|rd|th)?,?( [0-9][0-9][0-9][0-9])?)?");
+	regex whole_regex("[0-9][0-9][0-9][0-9]|(([1][0-2])|([0]?[1-9]))[. /-][0-9][0-9]?[. /-][0-9][0-9]([0-9][0-9])?|Easter|[nN]ew [yY]ear'?s( [dD]ay)?|[cC]hristmas ([dD]ay)?|[hH]alloween|[mM]emorial [dD]ay|[lL]abor [dD]ay|[cC]olumbus [dD]ay|[vV]eterans [dD]ay|[tT]hanksgiving [dD]ay|[mM]artin [lL]uther [kK]ing,? (Jr. )?[dD]ay|George Washington’?s Birthday|[iI]ndependence [dD]ay|(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)( [0-9]?[0-9](st|nd|rd|th)?,?( [0-9][0-9][0-9][0-9])?)?");
 
 	//makes sure text file was inputted.
 	if (argc != 2) {
