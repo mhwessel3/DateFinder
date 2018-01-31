@@ -18,8 +18,10 @@ int main(int argc, char** argv) {
 	//January or jan
 	regex month_regex("Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?");
 	//EX: 11/5/17
+	//(([1][0-2])|([0]?[1-9]))[. /-][0-9][0-9]?[. /-][0-9][0-9]([0-9][0-9])?
 	regex slash_regex("(([1][0-2])|([0]?[1-9]))[. /-][0-9][0-9]?[. /-][0-9][0-9]([0-9][0-9])?");
-	regex holiday_regex("[nN]ew [yY]ear'?s( [dD]ay)?|[cC]hristmas ([dD]ay)?|[hH]alloween|[mM]emorial [dD]ay|[lL]abor [dD]ay|[cC]olumbus [dD]ay|[vV]eterans [dD]ay|[tT]hanksgiving [dD]ay|[mM]artin [lL]uther [kK]ing,? (Jr. )?[dD]ay|George Washington’?s Birthday|[iI]ndependence [dD]ay");
+	//christmas, easter, etc.
+	regex holiday_regex("Easter|[nN]ew [yY]ear'?s( [dD]ay)?|[cC]hristmas ([dD]ay)?|[hH]alloween|[mM]emorial [dD]ay|[lL]abor [dD]ay|[cC]olumbus [dD]ay|[vV]eterans [dD]ay|[tT]hanksgiving [dD]ay|[mM]artin [lL]uther [kK]ing,? (Jr. )?[dD]ay|George Washington’?s Birthday|[iI]ndependence [dD]ay");
 
 	//makes sure text file was inputted.
 	if (argc != 2) {
@@ -40,6 +42,12 @@ int main(int argc, char** argv) {
 	string STRING;
     while(!inFile.eof()) {
 		getline(inFile, STRING); 
+
+		
+
+
+
+
         //at least one match
 		regex_search(STRING, holiday_match, holiday_regex);
 		cout << holiday_match[0] << endl;
