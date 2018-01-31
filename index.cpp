@@ -12,7 +12,7 @@ using namespace std;
  * Compile with: clang++ -std=c++11 -stdlib=libc++ -Wall -Wextra index.cpp -o exe
  */
 int main(int argc, char** argv) {
-
+/*
 	//REGEX DEFINES:
 	regex year_regex("[0-9][0-9][0-9][0-9]");
 	//January or jan
@@ -24,48 +24,36 @@ int main(int argc, char** argv) {
 	//EX: January 8th, 2016
 	regex month_day_year_regex("(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)( [0-9]?[0-9](st|nd|rd|th)?,?( [0-9][0-9][0-9][0-9])?)?");
 	//EX: Monday, January 18th??
-	regex wkday_month_num_year("((Sun|Mon|Tues|Thurs|Fri|Wed(nes)?|Sat(urday)?)(day)?)(, )?((Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)( [0-9]?[0-9](st|nd|rd|th)?,?( [0-9][0-9][0-9][0-9])?)?)?");
+	regex wkday_month_num_year("(Sun|Mon|Tues|Wed(nes)?|Thurs|Fri|Sat(ur)?)(day)?(, )?(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)? ?([0-9]?[0-9])?(st|nd|rd|th)?(, )?([0-9][0-9][0-9][0-9])?");
+*/
+	regex whole_regex("(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?) ?(([0-9][0-9][0-9][0-9])|([0-9]?[0-9])(st|nd|rd|th)?)?(, [0-9][0-9][0-9][0-9])?|(Sun|Mon|Tues|Wed(nes)?|Thurs|Fri|Sat(ur)?)(day)?(, )?(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)? ?([0-9]?[0-9])?(st|nd|rd|th)?(, )?([0-9][0-9][0-9][0-9])?|Easter|[nN]ew [yY]ear'?s( [dD]ay)?|[cC]hristmas ([dD]ay)?|[hH]alloween|[mM]emorial [dD]ay|[lL]abor [dD]ay|[cC]olumbus [dD]ay|[vV]eterans [dD]ay|[tT]hanksgiving [dD]ay|[mM]artin [lL]uther [kK]ing,? (Jr. )?[dD]ay|George Washington’?s Birthday|[iI]ndependence [dD]ay|(([1][0-2])|([0]?[1-9]))[. /-][0-9][0-9]?[. /-][0-9][0-9]([0-9][0-9])?|[0-9][0-9][0-9][0-9]");
 
-	regex whole_regex("[0-9][0-9][0-9][0-9]|(([1][0-2])|([0]?[1-9]))[. /-][0-9][0-9]?[. /-][0-9][0-9]([0-9][0-9])?|Easter|[nN]ew [yY]ear'?s( [dD]ay)?|[cC]hristmas ([dD]ay)?|[hH]alloween|[mM]emorial [dD]ay|[lL]abor [dD]ay|[cC]olumbus [dD]ay|[vV]eterans [dD]ay|[tT]hanksgiving [dD]ay|[mM]artin [lL]uther [kK]ing,? (Jr. )?[dD]ay|George Washington’?s Birthday|[iI]ndependence [dD]ay|(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)( [0-9]?[0-9](st|nd|rd|th)?,?( [0-9][0-9][0-9][0-9])?)?");
-
-	//makes sure text file was inputted.
+	//checks that we have correct number of arguments
 	if (argc != 2) {
     	cerr << "ERR: Incorrect number of arguments." << endl;
     	return -1;
   	}
 
-	ifstream inFile;
+	//makes sure the file can be read
+	ifstream inFile; //stores the reference to the inputted file
 	inFile.open(argv[1]);
 	if (!inFile) {
 		cerr << "Unable to open " << argv[1] << endl;
 		return -1;
 	}
 
-	smatch month_day_year_match;
-	smatch holiday_match;
-	smatch slash_match;
-	smatch month_match;
-	string STRING;
-    while(!inFile.eof()) {
-		getline(inFile, STRING); 
-        //at least one match
-		/*
-		regex_search(STRING, month_day_year_match, month_day_year_regex);
-		cout << month_day_year_match[0] << endl;
-		regex_search(STRING, holiday_match, holiday_regex);
-		cout << holiday_match[0] << endl;
-		regex_search(STRING, slash_match, slash_regex);
-		cout << slash_match[0] << endl;
-		*/
-		while (regex_search(STRING, month_match, whole_regex)) {
-			cout << month_match[0] << endl;
-            STRING = month_match.suffix();	
+	smatch line_match;
+	string current_line;
+    //read file line by line
+	while(!inFile.eof()) {
+		getline(inFile, current_line); 
+		while (regex_search(current_line, line_match, whole_regex)) {
+			cout << line_match[0] << endl;
+			//reset the current line to the rest of the line to continue searching this line for matches
+            current_line = line_match.suffix();
 		}
-		//cout << month_match[0] << endl;
-		//cout << month_match.suffix() << endl;
     }
 	
 	inFile.close();
-	cout << "" << endl;
 	return 0;
 }
