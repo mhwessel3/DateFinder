@@ -5,16 +5,13 @@
 using namespace std;
 
 /**
+ * TITLE: DateFinder
  * AUTHOR: Morgan Wessel
  * COURSE: LING406 
- * SOURCES: 
- * (1) http://www.cplusplus.com/forum/beginner/8388/
- * Compile with: clang++ -std=c++11 -stdlib=libc++ -Wall -Wextra index.cpp -o exe
  */
 int main(int argc, char** argv) {
 
-//Regular Expression to find Dates
-regex whole_regex("(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?) ?(([0-9][0-9][0-9][0-9])|([0-9]?[0-9])(st|nd|rd|th)?)?(,? [0-9][0-9][0-9][0-9])?|(Sun|Mon|Tues|Wed(nes)?|Thurs|Fri|Sat(ur)?)(day)?([, .] )?(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)?(.)? ?([0-9]?[0-9])?(st|nd|rd|th)?(, )?([0-9][0-9][0-9][0-9])?|Easter|[nN]ew [yY]ear'?s( [dD]ay)?|[cC]hristmas ([dD]ay)?|[hH]alloween|[mM]emorial [dD]ay|[lL]abor [dD]ay|[cC]olumbus [dD]ay|[vV]eterans [dD]ay|[tT]hanksgiving [dD]ay|[mM]artin [lL]uther [kK]ing,? (Jr. )?[dD]ay|George Washington’?s Birthday|[iI]ndependence [dD]ay|(([1][0-2])|([0]?[1-9]))[. /-][0-9][0-9]?[. /-][0-9][0-9]([0-9][0-9])?|[0-9][0-9][0-9][0-9]|([0-9]?[0-9](st|nd|rd|th))?( of )?(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)( of )?([0-9][0-9][0-9][0-9])?");
+regex whole_regex("(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?) ?(([0-9][0-9][0-9][0-9])|([0-9]?[0-9])(st|nd|rd|th)?)?(,? [0-9][0-9][0-9][0-9])?|(Sun|Mon|Tue(s)?|Wed(nes)?|Thurs|Fri|Sat(ur)?)(day)?([, .] )?(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)?.? ?([0-9]?[0-9])?(st|nd|rd|th)?(, )?([0-9][0-9][0-9][0-9])?|Easter|[nN]ew [yY]ear'?s?( [dD]ay)?|[cC]hristmas( [dD]ay)?|[hH]alloween|[mM]emorial [dD]ay|[lL]abor [dD]ay|[cC]olumbus [dD]ay|[vV]eterans [dD]ay|[tT]hanksgiving( [dD]ay)?|[mM]artin [lL]uther [kK]ing,? (Jr. )?[dD]ay|George Washington’?s Birthday|[iI]ndependence [dD]ay|(([1][0-2])|([0]?[1-9]))[. /-][0-9][0-9]?[. /-][0-9][0-9]([0-9][0-9])?|[0-9][0-9][0-9][0-9]|([0-9]?[0-9](st|nd|rd|th))?( of )?(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sept(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)( of )?([0-9][0-9][0-9][0-9])?");
 
 	//checks that we have correct number of arguments
 	if (argc != 2) {
