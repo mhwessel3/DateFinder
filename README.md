@@ -1,5 +1,4 @@
-# Program Name
-DateFinder
+# DateFinder
 
 ## Description
 This program successfully searches through a given text file and singles out all of the proper dates.  These dates are then printed to the terminal. For example, it will find dates like "January 29th, 2018, 1/29/18, 29th of January, Jan 29th, and so on.
