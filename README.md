@@ -15,3 +15,6 @@ You should use clang to compile this program.
 
 ## Sources
 * http://www.cplusplus.com/forum/beginner/8388/
+
+## Course
+LING 406 - Intro to Natural Language Processing
